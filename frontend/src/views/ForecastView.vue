@@ -19,7 +19,7 @@
           <div ref="waterStage" class="water-stage" :class="{paused:!playing}" :style="{'--flow-duration':`${speed}s`}">
             <img :src="data.source.image_url" alt="最新遥感识别底图">
             <canvas ref="flowCanvas" class="water-flow-canvas" aria-hidden="true"></canvas>
-            <div class="stage-badge"><span class="pulse"></span>积水区域流动示意</div>
+            <div class="stage-badge"><span class="pulse"></span>{{flowFrameLabel}}</div>
           </div>
           <div class="visual-note"><span><i class="legend water"></i>模型识别水体</span><span><i class="legend flow"></i>动态纹理表示趋势方向，不代表实际流速</span></div>
         </n-card>
@@ -64,7 +64,8 @@ import{formatDateTime,formatPercent}from'../utils/format'
 
 const data=ref<ForecastData|null>(null),loading=ref(false),playing=ref(true),speed=ref(4.8)
 const waterStage=ref<HTMLElement|null>(null),flowCanvas=ref<HTMLCanvasElement|null>(null)
-let waterMaskCanvas:HTMLCanvasElement|null=null,animationFrame=0,resizeObserver:ResizeObserver|null=null,frozenPhase=0
+const flowFrameLabel=ref('动态推演 · 当前')
+let waterMaskCanvas:HTMLCanvasElement|null=null,animationFrame=0,resizeObserver:ResizeObserver|null=null,frozenPhase=0,lastFrameIndex=-1
 const speedOptions=[{label:'缓慢',value:7.5},{label:'正常',value:4.8},{label:'快速',value:2.8}]
 const load=async()=>{loading.value=true;try{data.value=await api.forecast(currentProjectId.value)}finally{loading.value=false}}
 const directionLabel=computed(()=>data.value?.direction==='RISING'?'积水范围可能扩大':data.value?.direction==='FALLING'?'积水范围可能回落':'积水范围基本稳定')
@@ -108,11 +109,25 @@ function renderFlow(timestamp=performance.now()){
   const left=(rect.width-drawWidth)/2,top=(rect.height-drawHeight)/2
   const phase=playing.value?timestamp/(Math.max(speed.value,1)*1000):frozenPhase
   if(playing.value)frozenPhase=phase
+  const frameIndex=Math.floor((phase%1)*4)
+  if(frameIndex!==lastFrameIndex){
+    lastFrameIndex=frameIndex
+    flowFrameLabel.value=`动态推演 · ${frameIndex===0?'当前':`+${[0,6,12,24][frameIndex]} 小时`}`
+  }
+  const direction=data.value?.direction||'STABLE'
+  const radii=direction==='RISING'?[0,4,8,12]:direction==='FALLING'?[12,8,4,0]:[0,5,2,7]
+  const radius=radii[frameIndex]
+  context.globalAlpha=.95
   context.drawImage(mask,left,top,drawWidth,drawHeight)
+  if(radius>0){
+    for(let angle=0;angle<Math.PI*2;angle+=Math.PI/8){
+      context.drawImage(mask,left+Math.cos(angle)*radius,top+Math.sin(angle)*radius,drawWidth,drawHeight)
+    }
+  }
   context.globalCompositeOperation='source-in'
   const gradient=context.createLinearGradient(left+((phase*drawWidth*.34)%drawWidth)-drawWidth*.35,top,left+drawWidth,top+drawHeight)
   gradient.addColorStop(0,'rgba(18,126,188,.48)');gradient.addColorStop(.38,'rgba(53,205,231,.88)');gradient.addColorStop(.55,'rgba(179,247,255,.96)');gradient.addColorStop(.72,'rgba(37,174,218,.82)');gradient.addColorStop(1,'rgba(15,100,167,.55)')
-  context.fillStyle=gradient;context.fillRect(left,top,drawWidth,drawHeight)
+  context.fillStyle=gradient;context.fillRect(left-radius,top-radius,drawWidth+radius*2,drawHeight+radius*2)
   context.globalCompositeOperation='source-atop'
   context.lineWidth=2;context.strokeStyle='rgba(224,252,255,.9)'
   const spacing=34,offset=(phase*spacing*3)%spacing
