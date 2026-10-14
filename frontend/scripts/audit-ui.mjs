@@ -49,7 +49,7 @@ await send('Runtime.enable'); await send('Log.enable'); await send('Network.enab
 
 const tasks = await fetch('http://127.0.0.1:8001/api/results').then(r => r.json())
 const resultId = tasks.data.find(task => task.result)?.result.id
-const routes = ['/dashboard', '/datasets', '/inference', `/results/${resultId}`, '/model', '/history', '/settings']
+const routes = ['/dashboard', '/datasets', '/inference', `/results/${resultId}`, '/model', '/history', '/data-management', '/settings']
 const sizes = [[1920, 1080], [1600, 900], [1366, 768]]
 const report = []
 for (const [width, height] of sizes) {

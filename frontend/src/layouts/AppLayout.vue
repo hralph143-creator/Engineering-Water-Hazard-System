@@ -34,7 +34,7 @@
 import{computed,h,inject,onBeforeUnmount,onMounted,ref}from'vue'
 import{useRoute,useRouter}from'vue-router'
 import{NIcon,type MenuOption}from'naive-ui'
-import{GridOutline,ImagesOutline,ScanOutline,TimeOutline,AnalyticsOutline,SettingsOutline,SunnyOutline,MoonOutline,MenuOutline,DocumentTextOutline,ShieldCheckmarkOutline,MapOutline,ConstructOutline,ClipboardOutline,GitNetworkOutline,TrendingUpOutline}from'@vicons/ionicons5'
+import{GridOutline,ImagesOutline,ScanOutline,TimeOutline,AnalyticsOutline,SettingsOutline,SunnyOutline,MoonOutline,MenuOutline,DocumentTextOutline,ShieldCheckmarkOutline,MapOutline,ConstructOutline,ClipboardOutline,GitNetworkOutline,TrendingUpOutline,ServerOutline}from'@vicons/ionicons5'
 import{api}from'../api'
 import type{ConstructionProject,ModelStatus}from'../types'
 import{themeKey}from'../composables/theme'
@@ -58,7 +58,7 @@ const sections:ModuleSection[]=[
   {label:'感知分析',description:'多源环境数据接入、积水识别与时空趋势推演',path:'/datasets',icon:ImagesOutline,matches:['/datasets','/inference','/compare','/forecast'],items:[{label:'多源数据',path:'/datasets',icon:ImagesOutline},{label:'积水识别',path:'/inference',icon:ScanOutline},{label:'变化分析',path:'/compare',icon:AnalyticsOutline},{label:'趋势推演',path:'/forecast',icon:TrendingUpOutline}]},
   {label:'风险作业',description:'风险研判、现场处置与智能辅助集中协同',path:'/risk',icon:ShieldCheckmarkOutline,matches:['/risk','/assistance','/ai'],items:[{label:'风险研判',path:'/risk',icon:ShieldCheckmarkOutline},{label:'安全作业',path:'/assistance',icon:ClipboardOutline},{label:'智能助手',path:'/ai',icon:DocumentTextOutline}]},
   {label:'成果档案',description:'任务过程、分析成果与模型运行状态统一归档',path:'/history',icon:TimeOutline,matches:['/history','/results','/model'],items:[{label:'任务成果',path:'/history',icon:TimeOutline,matches:['/history','/results']},{label:'模型状态',path:'/model',icon:AnalyticsOutline}]},
-  {label:'系统管理',description:'运行参数、服务连接、诊断与备份',path:'/settings',icon:SettingsOutline,matches:['/settings'],items:[{label:'系统配置',path:'/settings',icon:SettingsOutline}]}
+  {label:'系统管理',description:'本地数据、运行参数、服务连接与诊断',path:'/data-management',icon:ServerOutline,matches:['/data-management','/settings'],items:[{label:'数据管理',path:'/data-management',icon:ServerOutline},{label:'系统配置',path:'/settings',icon:SettingsOutline}]}
 ]
 const matchesPath=(path:string,prefix:string)=>path===prefix||path.startsWith(`${prefix}/`)
 const currentSection=computed(()=>sections.find(section=>section.matches.some(prefix=>matchesPath(route.path,prefix))))
