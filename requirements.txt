@@ -1,0 +1,29 @@
+# Python 3.10-3.11
+# Model and geospatial processing
+torch>=2.1,<3
+torchvision>=0.16,<1
+numpy>=1.24,<3
+pandas>=2.0,<4
+matplotlib>=3.7,<4
+rasterio>=1.3,<2
+PyYAML>=6.0,<7
+tqdm>=4.65,<5
+openpyxl>=3.1,<4
+
+# Web API, configuration and database
+fastapi>=0.110,<1
+uvicorn[standard]>=0.27,<1
+pydantic>=2.6,<3
+SQLAlchemy>=2.0,<3
+python-multipart>=0.0.9,<1
+httpx>=0.27,<1
+
+# PDF report post-processing
+PyMuPDF>=1.24,<2
+
+# Windows desktop packaging
+# 6.11.2 currently produces a frozen Windows application whose QtCore native
+# extension fails to initialize under PyInstaller 6.22.2. Keep the verified
+# desktop packaging version pinned for reproducible installers.
+PySide6==6.8.3
+pyinstaller>=6.0,<7

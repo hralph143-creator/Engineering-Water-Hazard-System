@@ -1,0 +1,55 @@
+# 可迁移的开发默认配置。相对路径以本配置文件所在目录为基准。
+# 当前机器如需沿用既有数据，可在 %LOCALAPPDATA%\ZhiyuShield\configs\development.yaml
+# 保存本机专属路径；桌面发行版会自动生成用户目录配置。
+model:
+  checkpoint: "../resources/model/best_model.pt"
+  sar_stats: "../resources/model/sar_stats.json"
+  experiment_summary: "../resources/model/experiment_summary.json"
+  training_history: "../resources/model/training_history.csv"
+  threshold: 0.65
+  device: auto
+  name: U-Net
+  version: Sen1Floods11-v1.1-baseline
+
+paths:
+  uploads: "../runtime/uploads"
+  outputs: "../runtime/outputs"
+  database: "../runtime/zhiyu.db"
+
+risk:
+  low: 0.02
+  medium: 0.08
+  high: 0.2
+
+# 辅助研判规则参数：用于科研与工程场景验证，不属于行业强制安全标准。
+risk_rules:
+  version: water-risk-v1
+  new_attention: 0.01
+  new_high: 0.05
+  persistent_attention: 0.02
+  persistent_high: 0.08
+  net_expansion: 0.01
+  net_reduction: -0.01
+
+# 施工区域影响规则参数：用于科研与工程场景验证，不属于行业强制安全标准。
+work_area_impact:
+  version: work-area-impact-v1
+  high_attention_ratio: 0.05
+  inspection_ratio: 0.10
+
+# 设备位置快照时效参数：仅用于判断位置是否过期，不属于安全法规阈值。
+equipment_position:
+  version: equipment-water-link-v1
+  position_stale_hours: 24
+
+# 相对地形分区参数：不属于行业水害或安全标准。
+terrain:
+  version: terrain-analysis-v1
+  low_elevation_percentile: 20
+
+# 降雨事件分段与变化分析前置窗口，仅用于数据组织和辅助分析。
+# 不属于气象预警标准或工程停工标准。
+rainfall:
+  version: rainfall-event-v1
+  rain_event_gap_hours: 6
+  change_rainfall_pre_window_hours: 24

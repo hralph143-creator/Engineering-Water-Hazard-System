@@ -1,0 +1,130 @@
+{
+  "stac_version" : "1.0.0",
+  "stac_extensions" : [
+    "https://stac-extensions.github.io/raster/v1.0.0/schema.json"
+  ],
+  "id" : "dem_cop_30",
+  "title" : "dem_cop_30",
+  "type" : "Collection",
+  "license" : "proprietary",
+  "description" : "The Copernicus DEM is a Digital Surface Model (DSM) which represents the surface of the Earth including buildings, infrastructure and vegetation. GLO-30 Public provides limited worldwide coverage at 30 meters because a small subset of tiles covering specific countries are not yet released to the public by the Copernicus Programme. Note that ocean areas do not have tiles, there one can assume height values equal to zero. Data is provided as Cloud Optimized GeoTIFFs and comes from the Copernicus DEM 2021 release.",
+  "keywords" : [
+    "Copernicus",
+    "DEM",
+    "terrain",
+    "public",
+    "elevation",
+    "raster",
+    "open data",
+    "COG"
+  ],
+  "properties" : { },
+  "providers" : [
+    {
+      "name" : "Copernicus",
+      "description" : "The data of this STAC collection is originally sourced from the COP-DEM_GLO-30-DGED dataset.",
+      "roles" : [
+        "licensor",
+        "producer"
+      ],
+      "url" : "https://spacedata.copernicus.eu/en/web/guest/collections/copernicus-digital-elevation-model/"
+    },
+    {
+      "name" : "Sentinel Hub",
+      "description" : "Produced Cloud Optimized GeoTIFFs from Copernicus DEM products.",
+      "roles" : [
+        "processor"
+      ],
+      "url" : "https://copernicus-dem-30m.s3.amazonaws.com/readme.html"
+    },
+    {
+      "name" : "Open Data on AWS",
+      "description" : "Open Data covered by the AWS Open Data Sponsorship Program.",
+      "roles" : [
+        "host"
+      ],
+      "url" : "https://registry.opendata.aws/copernicus-dem/"
+    }
+  ],
+  "extent" : {
+    "spatial" : {
+      "bbox" : [
+        [
+          -180,
+          -90,
+          180,
+          90
+        ]
+      ]
+    },
+    "temporal" : {
+      "interval" : [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "links" : [
+    {
+      "href" : "https://copernicus-dem-30m-stac.s3.eu-central-1.amazonaws.com/dem_cop_30.json",
+      "rel" : "self",
+      "type" : "application/json"
+    },
+    {
+      "href" : "https://spacedata.copernicus.eu/en/web/guest/collections/copernicus-digital-elevation-model/",
+      "rel" : "about",
+      "type" : "text/html",
+      "title" : "Website describing the source data (see specification for more details)"
+    },
+    {
+      "href" : "https://spacedata.copernicus.eu/en/web/guest/collections/copernicus-digital-elevation-model/#Licencing",
+      "rel" : "license",
+      "type" : "text/html",
+      "title" : "License"
+    }
+  ],
+  "summaries" : {
+    "raster:bands" : [
+      {
+        "description" : "Orthometric heights in meters",
+        "name" : "Digital Elevation Model (DEM)",
+        "data_type" : "float32",
+        "sampling" : "point",
+        "statistics" : {
+          "minimum" : [
+            -413
+          ],
+          "maximum" : [
+            8848
+          ]
+        }
+      },
+      {
+        "description" : "Quality layer containing pixel editing information (see specification for more details)",
+        "name" : "Editing Mask (EDM)",
+        "data_type" : "uint8",
+        "sampling" : "point"
+      },
+      {
+        "description" : "Quality layer containing information about edited and fill pixels, including fill source (see specification for more details)",
+        "name" : "Filling Mask (FLM)",
+        "data_type" : "uint8",
+        "sampling" : "point"
+      },
+      {
+        "description" : "Quality layer containing water body information (see specification for more details)",
+        "name" : "Water Body Mask (WBM)",
+        "data_type" : "uint8",
+        "sampling" : "point"
+      },
+      {
+        "description" : "Quality layer containing the derived height error (see specification for more details)",
+        "name" : "Height Error Mask (HEM)",
+        "data_type" : "float32",
+        "sampling" : "point"
+      }
+    ]
+  }
+}

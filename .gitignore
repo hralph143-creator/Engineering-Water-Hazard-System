@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# 原始数据（不纳入版本控制，避免误提交大文件）
+data/raw/*
+!data/raw/.gitkeep
+
+# demo 数据（仅供结构测试，不作为正式训练数据）
+data/demo/
+
+# 模型权重
+checkpoints/*
+!checkpoints/.gitkeep
+
+# 输出产物
+outputs/metrics/*
+!outputs/metrics/.gitkeep
+outputs/predictions/*
+!outputs/predictions/.gitkeep
+outputs/figures/*
+!outputs/figures/.gitkeep
+
+# IDE / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 开发记忆（不推送到 GitHub）
+MEMORY.md
+configs/llm.local.json
+configs/llm.local.json.tmp
+
+# Frontend build and dependencies
+frontend/node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo
+# tsc 编译产物（与 .ts/.vue 源码重复，不推送）
+frontend/src/**/*.js
+# 品牌 Logo 图片（不入库，需本地放置 frontend/public/logo.png）
+frontend/public/logo.png
+
+# 测试缓存
+.pytest_cache/
+.pytest-tmp-*/
+
+# 报告 PDF 样例（不入库）
+output/pdf/
+
+# Desktop packaging output
+build/desktop/
+release/
+packaging/FloodRiskSystem.ico
+
+# Local runtime and QA artifacts
+.workspace/
+logs/
+backups/
+runtime/
+
+# Downloaded open-data binaries (keep catalogs, metadata and field mappings)
+open_data/**/*.tif
+open_data/**/*.tiff
+open_data/**/*.zip
+open_data/**/*.shp
+open_data/**/*.shx
+open_data/**/*.dbf
+open_data/**/*.xlsx

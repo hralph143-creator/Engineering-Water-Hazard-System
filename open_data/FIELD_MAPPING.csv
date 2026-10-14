@@ -1,0 +1,15 @@
+业务分区,开源数据,源字段或资产,系统目标表,系统目标字段,处理方式
+地形,Copernicus DEM GLO-30,GeoTIFF像元值,terrain_datasets,file_path及高程统计,已导入实际瓦片并登记来源
+地形,Copernicus DEM GLO-30,proj:epsg,terrain_datasets,crs,读取GeoTIFF元数据
+地形,Copernicus DEM GLO-30,proj:shape,terrain_datasets,width和height,读取GeoTIFF元数据
+地形,Copernicus DEM GLO-30,bbox,terrain_datasets,bounds,读取GeoTIFF元数据
+遥感,Copernicus Sentinel-1,Id,datasets,外部产品标识,正式下载影像时写入来源说明
+遥感,Copernicus Sentinel-1,Name,datasets,name,正式下载影像时映射
+遥感,Copernicus Sentinel-1,ContentDate,datasets,capture_time,使用产品开始时间
+遥感,Copernicus Sentinel-1,Footprint,datasets,bounds,正式导入前转为影像边界
+遥感,Copernicus Sentinel-1,S3Path,datasets,path,仅作远程产品定位不直接当本地路径
+降雨,NASA POWER,PRECTOTCORR,rainfall_observations,rainfall_mm,日累计降雨量
+降雨,NASA POWER,YEAR和DOY,rainfall_observations,observed_at,转换为UTC日期
+降雨,NASA POWER,坐标元数据,rainfall_stations,x和y,建立来源明确的虚拟格点站
+水系,Natural Earth rivers,geometry,work_areas,geometry_geojson,需按项目范围裁剪后作为参考区域
+水系,Natural Earth lakes,geometry,work_areas,geometry_geojson,需按项目范围裁剪后作为参考区域

@@ -1,0 +1,147 @@
+{
+  "type" : "Feature",
+  "stac_version" : "1.0.0",
+  "stac_extensions" : [
+    "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
+  ],
+  "id" : "Copernicus_DSM_COG_10_N39_00_E116_00",
+  "geometry" : {
+    "type" : "Polygon",
+    "coordinates" : [
+      [
+        [
+          115.99986111111112,
+          39.00013888888889
+        ],
+        [
+          116.99986111111112,
+          39.00013888888889
+        ],
+        [
+          116.99986111111112,
+          40.00013888888889
+        ],
+        [
+          115.99986111111112,
+          40.00013888888889
+        ],
+        [
+          115.99986111111112,
+          39.00013888888889
+        ]
+      ]
+    ]
+  },
+  "bbox" : [
+    115.99986111111112,
+    39.00013888888889,
+    116.99986111111112,
+    40.00013888888889
+  ],
+  "properties" : {
+    "title" : "Copernicus_DSM_COG_10_N39_00_E116_00",
+    "datetime" : null,
+    "proj:epsg" : 4326
+  },
+  "links" : [
+    {
+      "rel" : "self",
+      "href" : "https://copernicus-dem-30m-stac.s3.eu-central-1.amazonaws.com/items/Copernicus_DSM_COG_10_N39_00_E116_00.json",
+      "type" : "application/json"
+    },
+    {
+      "rel" : "collection",
+      "href" : "https://copernicus-dem-30m-stac.s3.eu-central-1.amazonaws.com/dem_cop_30.json"
+    },
+    {
+      "rel" : "product_overview",
+      "href" : "https://spacedata.copernicus.eu/en/web/guest/collections/copernicus-digital-elevation-model/",
+      "type" : "text/html",
+      "title" : "Source Data Overview"
+    },
+    {
+      "rel" : "root",
+      "href" : "https://copernicus-dem-30m-stac.s3.eu-central-1.amazonaws.com"
+    }
+  ],
+  "assets" : {
+    "elevation" : {
+      "href" : "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N39_00_E116_00_DEM/Copernicus_DSM_COG_10_N39_00_E116_00_DEM.tif",
+      "type" : "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title" : "Digital Elevation Model (DEM)",
+      "description" : "Orthometric heights in meters",
+      "roles" : [
+        "data"
+      ]
+    },
+    "editing_mask" : {
+      "href" : "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N39_00_E116_00_DEM/AUXFILES/Copernicus_DSM_COG_10_N39_00_E116_00_EDM.tif",
+      "type" : "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title" : "Editing Mask (EDM)",
+      "description" : "Quality layer containing pixel editing information (see specification for more details)",
+      "roles" : [
+        "quality-layer",
+        "editing-mask"
+      ]
+    },
+    "filling_mask" : {
+      "href" : "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N39_00_E116_00_DEM/AUXFILES/Copernicus_DSM_COG_10_N39_00_E116_00_FLM.tif",
+      "type" : "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title" : "Filling Mask (FLM)",
+      "description" : "Quality layer containing information about edited and fill pixels, including fill source (see specification for more details)",
+      "roles" : [
+        "quality-layer",
+        "filling-mask"
+      ]
+    },
+    "water_body_mask" : {
+      "href" : "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N39_00_E116_00_DEM/AUXFILES/Copernicus_DSM_COG_10_N39_00_E116_00_WBM.tif",
+      "type" : "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title" : "Water Body Mask (WBM)",
+      "description" : "Quality layer containing water body information (see specification for more details)",
+      "roles" : [
+        "quality-layer",
+        "water-mask"
+      ]
+    },
+    "height_error_mask" : {
+      "href" : "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N39_00_E116_00_DEM/AUXFILES/Copernicus_DSM_COG_10_N39_00_E116_00_HEM.tif",
+      "type" : "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title" : "Height Error Mask (HEM)",
+      "description" : "Quality layer containing the derived height error (see specification for more details)",
+      "roles" : [
+        "quality-layer",
+        "height-error-mask"
+      ]
+    },
+    "vertical_accuracy_mask" : {
+      "href" : "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N39_00_E116_00_DEM/AUXFILES/Copernicus_DSM_10_N39_00_E116_00_ACM.kml",
+      "type" : "kml",
+      "title" : "ACM",
+      "description" : "The Accuracy Layer provides the absolute, vertical accuracy information expressed in the estimated mean (68%) and maximum (90%) vertical accuracy per delivery unit as a vector file (KML format)",
+      "roles" : [
+        "quality-layer",
+        "vertical-accuracy-mask"
+      ]
+    },
+    "metadata" : {
+      "href" : "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N39_00_E116_00_DEM/Copernicus_DSM_10_N39_00_E116_00.xml",
+      "type" : "text/xml",
+      "title" : "Metadata",
+      "description" : "XML metadata file of the item.",
+      "roles" : [
+        "metadata"
+      ]
+    },
+    "license" : {
+      "href" : "https://copernicus-dem-30m.s3.eu-central-1.amazonaws.com/Copernicus_DSM_COG_10_N39_00_E116_00_DEM/INFO/eula_F.pdf",
+      "type" : "application/pdf",
+      "title" : "Licence for the use of the Copernicus DEM 30m",
+      "description" : "Licence for Copernicus DEM instance COP-DEM-GLO-30-F Global 30m Full, Free & Open",
+      "roles" : [
+        "license"
+      ]
+    }
+  },
+  "collection" : "dem_cop_30"
+}

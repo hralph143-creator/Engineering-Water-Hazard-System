@@ -1,0 +1,42 @@
+# 训练配置：Sen1Floods11 v1.1 + U-Net 洪水分割基线
+# 真实数据与训练产物均放 E 盘（避免写 C 盘）；路径为绝对路径
+seed: 42
+
+data:
+  root: E:/floodrisk/datasets/Sen1Floods11
+  processed_dir: E:/floodrisk/processed
+  split_dir: E:/floodrisk/processed/splits
+  stats_path: E:/floodrisk/processed/sar_stats.json   # SAR 归一化参数（训练集统计，全流程共用）
+  image_size: 256
+  augmentation: true           # 训练集随机水平/垂直翻转
+
+training:
+  batch_size: 4                # RTX 4070 Laptop 8GB 建议值
+  epochs: 50
+  learning_rate: 0.0001
+  num_workers: 4
+  device: auto                 # auto / cpu / cuda
+  amp: true                    # 混合精度（仅 CUDA 生效）
+  bce_weight: 1.0
+  dice_weight: 1.0
+  scheduler:
+    factor: 0.5
+    patience: 5                # 依据 Val IoU 早停学习率
+
+model:
+  in_channels: 2               # channel 0 = VV, channel 1 = VH
+  out_channels: 1              # 洪水概率
+  base_channels: 64
+
+checkpoint:
+  dir: E:/floodrisk/checkpoints
+  last: E:/floodrisk/checkpoints/last_model.pt
+  best: E:/floodrisk/checkpoints/best_model.pt
+
+inference:
+  threshold: 0.5
+  out_dir: E:/floodrisk/outputs/predictions
+
+outputs:
+  metrics_dir: E:/floodrisk/outputs/metrics
+  figures_dir: E:/floodrisk/outputs/figures

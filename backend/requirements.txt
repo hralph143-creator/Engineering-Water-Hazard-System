@@ -1,0 +1,2 @@
+# Reuse the root runtime dependencies to keep versions consistent.
+-r ../requirements.txt

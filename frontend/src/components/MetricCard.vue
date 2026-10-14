@@ -1,0 +1,2 @@
+<template><n-card size="small" :class="['metric-card',`metric-${tone||'cyan'}`,risk?'metric-risk':'']"><div class="metric"><label>{{label}}</label><strong :class="risk?`risk-${risk}`:''">{{value}}</strong><small v-if="hint">{{hint}}</small><span class="metric-corner"></span></div></n-card></template>
+<script setup lang="ts">defineProps<{label:string,value:string|number,hint?:string,risk?:string,tone?:'blue'|'cyan'|'purple'|'green'|'orange'|'red'}>();</script>
